@@ -15,15 +15,21 @@ const Logout = () => {
 
   return (
     <div className="logout">
-      <h2 className="logout__titulo">
-        ¿Estas seguro que quieres cerrar sesion?
-      </h2>
-      <div className="logout-botones">
-        <div className="logout-botones__boton1">
-          <Link to="/">Si</Link>
-        </div>
-        <div className="logout-botones__boton2">
-          <Link to="/">No</Link>
+      <div className="logout-cubo">
+        <h2 className="logout__titulo">
+          ¿Estas seguro que quieres cerrar sesion?
+        </h2>
+        <div className="logout-botones">
+          <div className="logout-botones__boton1">
+            <Link className="logout-botones__link" to="/register">
+              Si
+            </Link>
+          </div>
+          <div className="logout-botones__boton2">
+            <Link className="logout-botones__link" to="/">
+              No
+            </Link>
+          </div>
         </div>
       </div>
     </div>

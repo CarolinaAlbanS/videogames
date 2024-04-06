@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Games.scss";
-import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 
 const Games = () => {
   const navigate = useNavigate();
   const [games, setGames] = useState([]);
-  const [modifi, setModifi] = useState();
   const token = localStorage.getItem("token");
+  const id = localStorage.getItem("id");
+
   console.log(token);
 
   useEffect(() => {
