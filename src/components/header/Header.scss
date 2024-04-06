@@ -1,0 +1,24 @@
+.header{
+    
+    display: flex;
+    text-decoration: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    &-logo{
+        width: 80px;
+        margin-left: 3vw;
+    }
+    &-nav{
+        display: flex;
+        width: 20vw;
+        justify-content: space-around;
+        margin-right: 3vw;
+        &__link{
+            text-decoration: none;
+            color: white;
+
+        }
+    }
+}
