@@ -32,10 +32,11 @@ const Games = () => {
     try {
       const res = await axios.put(
         `http://localhost:3001/games/votes/${id}`,
-        { votes: modifi }
-        // { headers: { Authorization: `Bearer ${token}` } }
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       console.log(res);
+      await getGames();
     } catch (error) {
       console.error(error);
     }
