@@ -1,17 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import "./Logout.scss";
 
 const Logout = () => {
-  const id = localStorage.getItem("id");
   const token = localStorage.getItem("token");
-  console.log(token);
-  console.log(id);
-  const navigate = useNavigate();
+  const id = localStorage.getItem("id");
 
-  localStorage.removeItem("id");
-  localStorage.removeItem("token");
+  const cerrar = () => {
+    localStorage.removeItem("id");
+    localStorage.removeItem("token");
+  };
 
   return (
     <div className="logout">
@@ -20,16 +18,13 @@ const Logout = () => {
           ¿Estas seguro que quieres cerrar sesion?
         </h2>
         <div className="logout-botones">
-          <div className="logout-botones__boton1">
-            <Link className="logout-botones__link" to="/register">
-              Si
-            </Link>
-          </div>
-          <div className="logout-botones__boton2">
-            <Link className="logout-botones__link" to="/">
-              No
-            </Link>
-          </div>
+          <Link to="/Login" className="logout-botones__boton1" onClick={cerrar}>
+            Si
+          </Link>
+
+          <Link to="/" className="logout-botones__boton2">
+            No
+          </Link>
         </div>
       </div>
     </div>

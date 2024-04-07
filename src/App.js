@@ -5,6 +5,7 @@ import Games from "./pages/games/Games";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import Logout from "./pages/logout/Logout";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/logout" element={<Logout />}></Route>
         </Routes>
       </BrowserRouter>
+      <Footer></Footer>
     </>
   );
 }

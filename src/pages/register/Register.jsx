@@ -55,7 +55,6 @@ const Register = () => {
             {...register("password", { required: true })}
             placeholder="Password"
           ></input>
-
           <button className="register-form__btn">Guardar perfil</button>
         </form>
       </div>

@@ -2,7 +2,6 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Footer from "../../components/footer/Footer";
 import "./Login.scss";
 
 const Login = () => {
@@ -15,7 +14,6 @@ const Login = () => {
         .then((res) => {
           localStorage.setItem("id", res.data.data.user._id);
           localStorage.setItem("token", res.data.data.token);
-          console.log(res);
         });
       navigate("/games");
     } catch (error) {
@@ -24,6 +22,11 @@ const Login = () => {
   };
   return (
     <div className="login">
+      <div className="register-top">
+        <Link to="/" className="register-top__link">
+          Volver
+        </Link>
+      </div>
       <div className="login-cuadrado">
         <div className="login-txt">
           <h2 className="login-txt__h2">¡Inicia sesion y vota!</h2>
@@ -57,8 +60,6 @@ const Login = () => {
         </div>
       </div>
     </div>
-    // </div>
-    // </div>
   );
 };
 

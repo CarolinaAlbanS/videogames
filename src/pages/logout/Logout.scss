@@ -35,11 +35,9 @@
             margin: 5%;
             color: white;
             font-size: 14px;
-        }
-            &__link{
-                text-decoration: none;
+            text-decoration: none;
                 color: black;
-            }
+        }
             &__boton2{
                 border-radius: 5px;
                 cursor: pointer;
@@ -51,6 +49,8 @@
                 margin: 5%;
                 color: white;
                 font-size: 14px;
+                text-decoration: none;
+                color: black;
     
                 }
     }
