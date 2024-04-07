@@ -6,25 +6,28 @@ import "./Games.scss";
 
 const Games = () => {
   const [games, setGames] = useState([]);
+  const [gamesFiltered, setGamesFiltered] = useState([]);
 
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
-  console.log(token);
-  console.log(id);
 
   useEffect(() => {
     getGames();
   }, []);
 
+  // Peticion para pintar los juegos
   const getGames = async () => {
     try {
       const res = await axios.get("http://localhost:3001/games");
-      setGames(res.data.data);
+      const sortedGames = res.data.data.sort((a, b) => b.votes - a.votes);
+      setGames(sortedGames);
+      setGamesFiltered(sortedGames);
     } catch (error) {
       console.log(error);
     }
   };
 
+  // Para votar los juegos
   const updateGames = async (event) => {
     if (!token) {
       alert("Debes iniciar sesión para votar.");
@@ -41,6 +44,25 @@ const Games = () => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  // El buscador
+  const filterGames = (inputValue) => {
+    const gamesByInput = games.filter((game) =>
+      game.title.toLowerCase().includes(inputValue.toLowerCase())
+    );
+    setGamesFiltered(gamesByInput);
+  };
+
+  // El filtro por voto
+  const filterVotes = (votesValue) => {
+    if (votesValue === "") {
+      setGamesFiltered(games);
+      return;
+    }
+    const numVotesValue = parseInt(votesValue);
+    const votesByInput = games.filter((game) => game.votes === numVotesValue);
+    setGamesFiltered(votesByInput);
   };
 
   return (
@@ -61,16 +83,34 @@ const Games = () => {
           </Link>
         </nav>
       </div>
+      <div className="boxSearchr">
+        {/* Buscador */}
+        <div className="boxSearchr-search">
+          <p>Encuentra tu juego favorito</p>
+          <input
+            className="boxSearchr-search__input"
+            type="text"
+            placeholder="Buscar..."
+            onChange={(e) => filterGames(e.target.value)}
+          ></input>
+        </div>
+        {/* Filtrar votos */}
+        <div className="boxSearchr-search">
+          <p>Filtra por numero de votos</p>
+          <input
+            className="boxSearchr-search__input"
+            type="text"
+            placeholder="Buscar..."
+            onChange={(e) => filterVotes(e.target.value)}
+          ></input>
+        </div>
+      </div>
 
       <div className="games">
-        {games.map((game, index) => (
-          <div className="games-juegos" key={index}>
-            <img
-              className="games-juegos__img"
-              src={game.img}
-              alt={game.title}
-            />
-            <div className="games-juegos__text">
+        {gamesFiltered.map((game, index) => (
+          <div className="games-game" key={index}>
+            <img className="games-game__img" src={game.img} alt={game.title} />
+            <div className="games-game__text">
               <h2>{game.title}</h2>
               <p>Votos: {game.votes}</p>
               <p>Comentarios: {game.comment}</p>
@@ -78,15 +118,15 @@ const Games = () => {
               <button
                 id={game._id}
                 onClick={updateGames}
-                className="games-voto"
+                className="games-vote"
               >
                 {" "}
                 Votar
               </button>
-              <button id={game._id} className="games-voto">
+              {/* <button id={game._id} className="games-vote">
                 {" "}
                 Comentar
-              </button>
+              </button> */}
             </div>
           </div>
         ))}

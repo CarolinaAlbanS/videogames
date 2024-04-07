@@ -10,10 +10,8 @@ const Register = () => {
   const navigate = useNavigate();
   const onSubmit = async (data) => {
     try {
-      console.log(data);
       const res = await axios.post("http://localhost:3001/users", data);
       const cli = res.data.data._id;
-      console.log(cli);
       localStorage.setItem("id", cli);
       navigate("/login");
     } catch (error) {
@@ -28,7 +26,7 @@ const Register = () => {
           Volver
         </Link>
       </div>
-      <div className="register-caja">
+      <div className="register-box">
         <h1 className="register__title">Registrate</h1>
         <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
           <input

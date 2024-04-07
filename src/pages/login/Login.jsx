@@ -27,7 +27,7 @@ const Login = () => {
           Volver
         </Link>
       </div>
-      <div className="login-cuadrado">
+      <div className="login-square">
         <div className="login-txt">
           <h2 className="login-txt__h2">¡Inicia sesion y vota!</h2>
           <p>Por favor, introduce tus datos para continuar</p>
@@ -55,7 +55,7 @@ const Login = () => {
         <div className="login-opt">
           <p className="login-opt__new"> ¿No tienes cuenta?</p>
           <Link to="/register">
-            <h4 className="login-opt__crea">Crea tu cuenta aquí</h4>
+            <h4 className="login-opt__create">Crea tu cuenta aquí</h4>
           </Link>
         </div>
       </div>

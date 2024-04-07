@@ -13,7 +13,7 @@ const Logout = () => {
 
   return (
     <div className="logout">
-      <div className="logout-cubo">
+      <div className="logout-cube">
         <h2 className="logout__titulo">
           ¿Estas seguro que quieres cerrar sesion?
         </h2>

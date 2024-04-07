@@ -7,7 +7,7 @@
     align-content: space-around;
     justify-content: space-around;
     align-items: stretch;
-    &-juegos{
+    &-game{
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
@@ -51,7 +51,7 @@
             }
         }
     }
-    &-voto{ 
+    &-vote{ 
         position: relative;
         display: block;
         height: 50px;
@@ -67,6 +67,23 @@
     }
     
 }
-.bucador{
-    background-color: red;
-}
+.boxSearchr{
+    display: flex;
+
+    &-search{
+        color: white;
+        &__input{
+            border: none;
+            border-bottom: 1px solid gray;
+            padding: 10px 10px 10px 0;
+            width: 40vw;
+            background-color: black;
+            margin-left: 5vw;
+            color: white;
+        }
+        p{
+            margin-left: 5vw;
+            
+        }
+    }
+ }
