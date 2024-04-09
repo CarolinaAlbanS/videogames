@@ -1,0 +1,57 @@
+.header{
+    
+    display: flex;
+    text-decoration: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    &-logo{
+        width: 80px;
+        margin-left: 3vw;
+    }
+    &-navAdmin{
+        display: flex;
+        width: 15vw;
+        justify-content: space-around;
+        &__link{
+            text-decoration: none;
+            color: white;
+
+        }
+    }
+}
+.games{
+    &-admin{
+        position: relative;
+        display: block;
+        height: 50px;
+        width: 200px;
+        border: none;
+        background-color:black;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        transition: 1s;
+        overflow: hidden;
+        &__link{
+            text-decoration: none;
+            color: white;
+
+        }
+    }
+}
+.create{
+    text-decoration: none;
+    color: white;
+    font-size: x-large;
+    border-radius: 5px;
+    width: 20vw;
+    height: 3vw;
+    background: linear-gradient(90deg,#57A6FF,#E153FF);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 39%;
+    text-align: center;
+}

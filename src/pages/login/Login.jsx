@@ -8,12 +8,15 @@ const Login = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const onSubmit = async (data) => {
+    console.log(data);
     try {
       const res = await axios
         .post("http://localhost:3001/users/authenticate", data)
         .then((res) => {
-          localStorage.setItem("id", res.data.data.user._id);
+          console.log(res);
           localStorage.setItem("token", res.data.data.token);
+          localStorage.setItem("id", res.data.data.user._id);
+          localStorage.setItem("role", res.data.data.user.role);
         });
       navigate("/games");
     } catch (error) {

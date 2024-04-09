@@ -5,10 +5,12 @@ import "./Logout.scss";
 const Logout = () => {
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
+  const role = localStorage.getItem("role");
 
   const cerrar = () => {
     localStorage.removeItem("id");
     localStorage.removeItem("token");
+    localStorage.removeItem("role");
   };
 
   return (

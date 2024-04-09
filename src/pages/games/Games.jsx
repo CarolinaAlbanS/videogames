@@ -10,6 +10,7 @@ const Games = () => {
 
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
+  const userRole = localStorage.getItem("role");
 
   useEffect(() => {
     getGames();
@@ -72,6 +73,12 @@ const Games = () => {
           <img className="header-logo" src="./img/vegetta.png" alt="logo" />
         </Link>
         <nav className="header-nav">
+          {userRole === "admin" && (
+            <Link className="header-nav__link" to="/admin">
+              Administrador
+            </Link>
+          )}
+
           <Link className="header-nav__link" to="/register">
             Registro
           </Link>
@@ -120,7 +127,6 @@ const Games = () => {
                 onClick={updateGames}
                 className="games-vote"
               >
-                {" "}
                 Votar
               </button>
               {/* <button id={game._id} className="games-vote">
