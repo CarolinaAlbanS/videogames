@@ -8,6 +8,7 @@ import Logout from "./pages/logout/Logout";
 import Footer from "./components/footer/Footer";
 import Admin from "./pages/admin/Admin";
 import Create from "./pages/create/Create";
+import Edit from "./pages/edit/Edit";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/logout" element={<Logout />}></Route>
           <Route path="/admin" element={<Admin />}></Route>
           <Route path="/create" element={<Create />}></Route>
+          <Route path="/edit/:id" element={<Edit />}></Route>
         </Routes>
       </BrowserRouter>
       <Footer></Footer>

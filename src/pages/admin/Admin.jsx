@@ -13,7 +13,7 @@ const Admin = () => {
 
   useEffect(() => {
     getGames();
-  }, [games1]);
+  }, []);
 
   const getGames = async () => {
     try {
@@ -75,8 +75,8 @@ const Admin = () => {
                 {" "}
                 Eliminar
               </button>
-              <button className="games-admin">
-                <Link to="/edit" className="games-admin__link">
+              <button id={game._id} className="games-admin">
+                <Link to={`/edit/${game._id}`} className="games-admin__link">
                   {" "}
                   Editar{" "}
                 </Link>

@@ -10,7 +10,7 @@ const Create = () => {
     try {
       const res = await axios.post("http://localhost:3001/games", data);
       //   const cli = res.data.data._id;
-      navigate("/login");
+      navigate("/admin");
     } catch (error) {
       console.error("fallo en la llamada", error);
     }
@@ -18,8 +18,13 @@ const Create = () => {
 
   return (
     <div className="register">
+      <div className="register-top">
+        <Link to="/admin" className="register-top__link">
+          Volver
+        </Link>
+      </div>
       <div className="register-box">
-        <h1 className="register__title">Registrate</h1>
+        <h1 className="register__title">Crea nuevo juego</h1>
         <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
           <label htmlFor="img">
             <input
@@ -60,7 +65,7 @@ const Create = () => {
             ></input>
           </label>
 
-          <button className="register-form__btn">Guardar perfil</button>
+          <button className="register-form__btn">Guardar nuevo juego</button>
         </form>
       </div>
     </div>
