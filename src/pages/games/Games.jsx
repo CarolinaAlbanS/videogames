@@ -112,6 +112,13 @@ const Games = () => {
           ></input>
         </div>
       </div>
+      {/* <div>
+        {gamesFiltered.map((game, index) => (
+          <div key={index}>
+            <button>{game.category}</button>
+          </div>
+        ))}
+      </div> */}
 
       <div className="games">
         {gamesFiltered.map((game, index) => (

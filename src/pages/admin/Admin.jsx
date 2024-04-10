@@ -1,11 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Admin.scss";
 
 const Admin = () => {
   const [games1, setGames1] = useState([]);
+  const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
@@ -24,14 +25,11 @@ const Admin = () => {
       console.log(error);
     }
   };
+
   const deleteGames = async (event) => {
     const id = event.target.getAttribute("id");
     try {
-      const res = await axios.delete(
-        `http://localhost:3001/games/${id}`,
-        {},
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      await axios.delete(`http://localhost:3001/games/${id}`);
       await getGames();
     } catch (error) {
       console.error(error);
