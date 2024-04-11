@@ -7,6 +7,7 @@ import "./Games.scss";
 const Games = () => {
   const [games, setGames] = useState([]);
   const [gamesFiltered, setGamesFiltered] = useState([]);
+  const [categoryUnique, setcategoryUnique] = useState([]);
 
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
@@ -20,9 +21,19 @@ const Games = () => {
   const getGames = async () => {
     try {
       const res = await axios.get("http://localhost:3001/games");
-      const sortedGames = res.data.data.sort((a, b) => b.votes - a.votes);
-      setGames(sortedGames);
-      setGamesFiltered(sortedGames);
+      const sortGames = res.data.data.sort((a, b) => b.votes - a.votes);
+      setGames(sortGames);
+      setGamesFiltered(sortGames);
+      console.log(sortGames);
+
+      const uniqueCategories = [];
+      sortGames.forEach((game) => {
+        if (!uniqueCategories.includes(game.category)) {
+          uniqueCategories.push(game.category);
+        }
+      });
+      setcategoryUnique(uniqueCategories);
+      console.log("soy el correcto", uniqueCategories);
     } catch (error) {
       console.log(error);
     }
@@ -64,6 +75,15 @@ const Games = () => {
     const numVotesValue = parseInt(votesValue);
     const votesByInput = games.filter((game) => game.votes === numVotesValue);
     setGamesFiltered(votesByInput);
+  };
+  // Botones para filtrar categorias
+  const filterByCategory = (category) => {
+    const filteredGames = games.filter((game) => game.category === category);
+    setGamesFiltered(filteredGames);
+  };
+
+  const allGames = () => {
+    setGamesFiltered(games);
   };
 
   return (
@@ -112,13 +132,21 @@ const Games = () => {
           ></input>
         </div>
       </div>
-      {/* <div>
-        {gamesFiltered.map((game, index) => (
-          <div key={index}>
-            <button>{game.category}</button>
-          </div>
+      {/* Botones filtrar categoría */}
+      <div className="games-category">
+        {categoryUnique.map((category, index) => (
+          <button
+            key={index}
+            onClick={() => filterByCategory(category)}
+            className="games-category__btn"
+          >
+            {category}
+          </button>
         ))}
-      </div> */}
+        <button onClick={allGames} className="games-category__btn">
+          Todas
+        </button>
+      </div>
 
       <div className="games">
         {gamesFiltered.map((game, index) => (
@@ -136,10 +164,6 @@ const Games = () => {
               >
                 Votar
               </button>
-              {/* <button id={game._id} className="games-vote">
-                {" "}
-                Comentar
-              </button> */}
             </div>
           </div>
         ))}

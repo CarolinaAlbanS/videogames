@@ -73,12 +73,12 @@ const Admin = () => {
                 {" "}
                 Eliminar
               </button>
-              <button id={game._id} className="games-admin">
-                <Link to={`/edit/${game._id}`} className="games-admin__link">
+              <Link to={`/edit/${game._id}`} className="games-admin__link">
+                <button id={game._id} className="games-admin">
                   {" "}
                   Editar{" "}
-                </Link>
-              </button>
+                </button>
+              </Link>
             </div>
           </div>
         ))}
