@@ -10,7 +10,7 @@ const Games = () => {
   const [categoryUnique, setcategoryUnique] = useState([]);
 
   const token = localStorage.getItem("token");
-  const id = localStorage.getItem("id");
+  const idUser = localStorage.getItem("id");
   const userRole = localStorage.getItem("role");
 
   useEffect(() => {
@@ -24,7 +24,6 @@ const Games = () => {
       const sortGames = res.data.data.sort((a, b) => b.votes - a.votes);
       setGames(sortGames);
       setGamesFiltered(sortGames);
-      console.log(sortGames);
 
       const uniqueCategories = [];
       sortGames.forEach((game) => {
@@ -33,7 +32,6 @@ const Games = () => {
         }
       });
       setcategoryUnique(uniqueCategories);
-      console.log("soy el correcto", uniqueCategories);
     } catch (error) {
       console.log(error);
     }
@@ -48,6 +46,18 @@ const Games = () => {
     const id = event.target.getAttribute("id");
     try {
       const res = await axios.put(
+        `http://localhost:3001/users/vote/${idUser}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      const userVotes = res.data.data.votes;
+      if (userVotes <= 0) {
+        alert("Has alcanzado el límite de votos.");
+        return;
+      }
+
+      const votesRes = await axios.put(
         `http://localhost:3001/games/votes/${id}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
